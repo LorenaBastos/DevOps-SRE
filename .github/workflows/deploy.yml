@@ -17,7 +17,7 @@ jobs:
         uses: google-github-actions/setup-gcloud@v0.4.0
         with:
           version: 'latest'
-          project_id: <your-project-id>
+          project_id: <project-id>
           service_account_key: ${{ secrets.GCLOUD_AUTH }}
 
       - name: Configure Docker
@@ -28,14 +28,14 @@ jobs:
         with:
           version: 'latest'
         env:
-          PROJECT_ID: <your-project-id>
+          PROJECT_ID: <project-id>
 
       - name: Build and push Docker image
         uses: docker/build-push-action@v2
         with:
           context: .
           push: true
-          tags: gcr.io/<your-project-id>/<image-name>
+          tags: gcr.io/<project-id>/<image-name>
 
       - name: Configure kubectl
         uses: azure/k8s-set-context@v1
